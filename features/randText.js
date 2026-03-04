@@ -1,5 +1,11 @@
 const textBox = document.getElementById("text");
 
+const timer = document.getElementById("time");
+
+const start = document.getElementById("start");
+
+let duration = 60;
+
 fetch("./typing-speed-test-main/data.json")
   .then((response) => response.json())
   .then((data) => {
@@ -29,3 +35,16 @@ fetch("./typing-speed-test-main/data.json")
     defaultSetting();
   })
   .catch((error) => console.error("Error:", error));
+
+function timeStart() {
+  setInterval(() => {
+    duration--;
+
+    timer.innerText = duration;
+  }, 1000);
+}
+
+start.addEventListener("click", () => {
+  timeStart();
+  start.disabled = true;
+});

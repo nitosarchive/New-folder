@@ -14,9 +14,11 @@ body {
   justify-content: center;
   height: 100vh;
   flex-direction: column;
+  position: relative;
 }
 
-#text {
+.select {
+  display: flex;
 }
 
 button {
@@ -26,4 +28,9 @@ button {
   padding-block: 0.2em;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.start {
+  position: absolute;
+  z-index: 2;
 }
