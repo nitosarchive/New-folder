@@ -24,6 +24,11 @@ function elementString() {
   textBox.innerHTML = fullHTML;
 }
 
+function defaultSetting() {
+  words = easy[Math.floor(Math.random() * easy.length)];
+  elementString();
+}
+
 function difficulty(e) {
   if (!e.target.matches("button")) return; // Check which difficulty was selected
 
@@ -44,11 +49,6 @@ fetch("./typing-speed-test-main/data.json")
     easy = data.easy;
     medium = data.medium;
     hard = data.hard;
-
-    function defaultSetting() {
-      words = easy[Math.floor(Math.random() * easy.length)];
-      elementString();
-    }
 
     defaultSetting();
   })
@@ -71,8 +71,13 @@ start.addEventListener("click", () => {
 
 let letter = "e";
 
+let ignore = ["Shift", "Backspace"];
+
 document.addEventListener("keyup", (e) => {
-  if ((e.key = letter)) {
-    console.log("correct");
+  if (e.key === textBox.firstElementChild.innerText) {
+    console.log(e.key);
+    textBox.firstElementChild.classList.add("correct");
+  } else {
+    textBox.firstElementChild.classList.add("incorrect");
   }
 });
