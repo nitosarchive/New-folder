@@ -6,6 +6,8 @@ const start = document.getElementById("start");
 
 let duration = 60;
 
+let textString;
+let fullHTML = "";
 fetch("./typing-speed-test-main/data.json")
   .then((response) => response.json())
   .then((data) => {
@@ -13,23 +15,35 @@ fetch("./typing-speed-test-main/data.json")
     const medium = data.medium;
     const hard = data.hard;
 
+    function elementString() {
+      textString = words.text.split("");
+
+      textString.forEach((value) => {
+        fullHTML += `<span> ${value} </span>`;
+
+        textBox.innerHTML = fullHTML;
+      });
+    }
+
     function defaultSetting() {
-      let difficultyText = easy[Math.floor(Math.random() * easy.length)];
-      textBox.innerText = difficultyText.text;
+      words = easy[Math.floor(Math.random() * easy.length)];
+      elementString();
     }
 
     document.getElementById("btn").addEventListener("click", (e) => {
       if (!e.target.matches("button")) return; // Check which difficulty was selected
 
       if (e.target.id === "easy") {
-        difficultyText = easy[Math.floor(Math.random() * easy.length)];
+        words = easy[Math.floor(Math.random() * easy.length)];
       } else if (e.target.id === "medium") {
-        difficultyText = medium[Math.floor(Math.random() * medium.length)];
+        words = medium[Math.floor(Math.random() * medium.length)];
       } else {
-        difficultyText = hard[Math.floor(Math.random() * hard.length)];
+        words = hard[Math.floor(Math.random() * hard.length)];
       }
 
-      textBox.innerText = difficultyText.text;
+      textString = words.text.split("");
+
+      elementString();
     });
 
     defaultSetting();
