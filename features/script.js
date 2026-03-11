@@ -69,15 +69,15 @@ start.addEventListener("click", () => {
   start.disabled = true;
 });
 
-let letter = "e";
-
-let ignore = ["Shift", "Backspace"];
+const ignore = ["Shift", "Backspace", "Ctrl", "Enter", "Alt"];
+current = document.getElementsByClassName("current");
 
 document.addEventListener("keyup", (e) => {
-  if (e.key === textBox.firstElementChild.innerText) {
-    console.log(e.key);
-    textBox.firstElementChild.classList.add("correct");
+  if (ignore.includes(e.key)) return;
+
+  if (e.key === current.innerText) {
+    current.classList.add("correct");
   } else {
-    textBox.firstElementChild.classList.add("incorrect");
+    current.classList.add("incorrect");
   }
 });
