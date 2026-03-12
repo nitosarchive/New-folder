@@ -10,10 +10,8 @@ let textString;
 let fullHTML = "";
 
 let words;
-let easy;
-let medium;
-let hard;
 
+let array;
 function elementString() {
   textString = words.text.split("");
 
@@ -23,6 +21,10 @@ function elementString() {
   fullHTML = array.join("");
   textBox.innerHTML = fullHTML;
 }
+
+let easy;
+let medium;
+let hard;
 
 function defaultSetting() {
   words = easy[Math.floor(Math.random() * easy.length)];
@@ -57,23 +59,28 @@ fetch("./typing-speed-test-main/data.json")
 document.getElementById("btn").addEventListener("click", difficulty);
 
 function timeStart() {
+  if (duration === "0") return;
   setInterval(() => {
     duration--;
-
     timer.innerText = duration;
   }, 1000);
 }
 
+let currentIndex = 0;
+
 start.addEventListener("click", () => {
   timeStart();
   start.disabled = true;
+  let span = textBox.querySelectorAll("span");
+
+  span[currentIndex].classList.add("current");
 });
 
 const ignore = ["Shift", "Backspace", "Ctrl", "Enter", "Alt"];
-current = document.getElementsByClassName("current");
 
 document.addEventListener("keyup", (e) => {
   if (ignore.includes(e.key)) return;
+  current = document.querySelector(".current");
 
   if (e.key === current.innerText) {
     current.classList.add("correct");
