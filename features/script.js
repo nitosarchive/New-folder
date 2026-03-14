@@ -73,7 +73,7 @@ start.addEventListener("click", () => {
   start.disabled = true;
   span = textBox.querySelectorAll("span");
 
-  span[0].classList.add("current");
+  span[currentIndex].classList.add("current");
 });
 
 const ignore = ["Shift", "Backspace", "Ctrl", "Enter", "Alt"];
@@ -81,10 +81,14 @@ const ignore = ["Shift", "Backspace", "Ctrl", "Enter", "Alt"];
 document.addEventListener("keyup", (e) => {
   if (ignore.includes(e.key)) return;
   current = document.querySelector(".current");
+  currentIndex++;
 
   if (e.key === current.innerText) {
     current.classList.add("correct");
   } else {
     current.classList.add("incorrect");
   }
+  current.classList.remove("current");
+
+  span[currentIndex].classList.add("current");
 });
