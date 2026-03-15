@@ -1,14 +1,9 @@
 const textBox = document.getElementById("text");
-
 const timer = document.getElementById("time");
-
 const start = document.getElementById("start");
 const accuracy = document.getElementById("accuracy");
-
 const wpm = document.getElementById("wpm");
-
 let duration = 60;
-
 let words;
 let correct = 0;
 
@@ -32,6 +27,17 @@ function defaultSetting() {
   elementString();
 }
 
+fetch("./typing-speed-test-main/data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    easy = data.easy;
+    medium = data.medium;
+    hard = data.hard;
+
+    defaultSetting();
+  })
+  .catch((error) => console.error("Error:", error));
+
 function difficulty(e) {
   if (!e.target.matches("button")) return; // Check which difficulty was selected
 
@@ -45,17 +51,6 @@ function difficulty(e) {
 
   elementString();
 }
-
-fetch("./typing-speed-test-main/data.json")
-  .then((response) => response.json())
-  .then((data) => {
-    easy = data.easy;
-    medium = data.medium;
-    hard = data.hard;
-
-    defaultSetting();
-  })
-  .catch((error) => console.error("Error:", error));
 
 document.getElementById("btn").addEventListener("click", difficulty);
 
@@ -78,7 +73,7 @@ function timeStart() {
 
 let currentIndex = 0;
 let incorrect = 0;
-let testStart;
+let testStart = false;
 
 let span;
 start.addEventListener("click", () => {
@@ -99,7 +94,7 @@ const ignore = [
   "Tab",
 ];
 
-document.addEventListener("keyup", (e) => {
+document.addEventListener("keypress", (e) => {
   if (ignore.includes(e.key)) return;
 
   current = document.querySelector(".current");
@@ -117,11 +112,13 @@ document.addEventListener("keyup", (e) => {
     ((span.length - incorrect) / span.length) * 100,
   );
 
-  currentIndex++;
-  span[currentIndex].classList.add("current");
+  console.log(span);
 
-  if (currentIndex === span.length - 1) {
+  if (currentIndex >= span.length - 1) {
     clearInterval(time);
     testStart = false;
   }
+
+  currentIndex++;
+  span[currentIndex].classList.add("current");
 });
