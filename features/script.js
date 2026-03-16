@@ -42,8 +42,6 @@ function defaultSetting() {
 }
 
 function difficulty(e) {
-  if (!e.target.matches("option")) return; // Check which difficulty was selected
-
   if (e.target.value === "easy") {
     words = easy[Math.floor(Math.random() * easy.length)];
   } else if (e.target.value === "medium") {
@@ -57,7 +55,7 @@ function difficulty(e) {
 
 document
   .getElementById("option-container")
-  .addEventListener("click", difficulty);
+  .addEventListener("change", difficulty);
 
 let timePassed = 0;
 
