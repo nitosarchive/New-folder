@@ -8,6 +8,8 @@ let words;
 let correct = 0;
 let testStart = false;
 const btn = document.querySelectorAll("button");
+let span;
+
 function elementString() {
   let textString = words.text.split("");
 
@@ -23,11 +25,6 @@ let easy;
 let medium;
 let hard;
 
-function defaultSetting() {
-  words = easy[Math.floor(Math.random() * easy.length)];
-  elementString();
-}
-
 fetch("./typing-speed-test-main/data.json")
   .then((response) => response.json())
   .then((data) => {
@@ -39,12 +36,17 @@ fetch("./typing-speed-test-main/data.json")
   })
   .catch((error) => console.error("Error:", error));
 
-function difficulty(e) {
-  if (!e.target.matches("button")) return; // Check which difficulty was selected
+function defaultSetting() {
+  words = easy[Math.floor(Math.random() * easy.length)];
+  elementString();
+}
 
-  if (e.target.id === "easy") {
+function difficulty(e) {
+  if (!e.target.matches("option")) return; // Check which difficulty was selected
+
+  if (e.target.value === "easy") {
     words = easy[Math.floor(Math.random() * easy.length)];
-  } else if (e.target.id === "medium") {
+  } else if (e.target.value === "medium") {
     words = medium[Math.floor(Math.random() * medium.length)];
   } else {
     words = hard[Math.floor(Math.random() * hard.length)];
@@ -53,7 +55,9 @@ function difficulty(e) {
   elementString();
 }
 
-document.getElementById("btn").addEventListener("click", difficulty);
+document
+  .getElementById("option-container")
+  .addEventListener("click", difficulty);
 
 let timePassed = 0;
 
@@ -75,7 +79,6 @@ function timeStart() {
 let currentIndex = 0;
 let incorrect = 0;
 
-let span;
 start.addEventListener("click", () => {
   timeStart();
   btn.forEach((btn) => {
@@ -86,6 +89,7 @@ start.addEventListener("click", () => {
   testStart = true;
   span[currentIndex].classList.add("current");
   textBox.classList.remove("not-started");
+  document.querySelector(".overlay").style.display = "none";
 });
 
 const ignore = [

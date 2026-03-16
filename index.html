@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="features/script.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <title>Typing Test</title>
   </head>
   <body>
-    <button id="start">Start test</button>
-    <nav class="select">
-      <div id="btn">
-        Difficulty: <button id="easy">Easy</button>
-        <button id="medium">Medium</button>
-        <button id="hard">Hard</button>
+    <label for="difficulty"></label>
+    <select title="difficulty" id="option-container">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+
+    <span id="time"></span>
+
+    <main>
+      <div class="overlay">
+        <button id="start">start typing test</button>
+        <span>Or click the text and start typing</span>
       </div>
 
-      <span id="time"></span>
-    </nav>
-    <main>
       <div id="text" class="not-started"></div>
     </main>
 
