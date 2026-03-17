@@ -3,13 +3,14 @@ const timer = document.getElementById("time");
 const start = document.getElementById("start");
 const accuracy = document.getElementById("accuracy");
 const wpm = document.getElementById("wpm");
-let duration = 60;
+let incrementedTime;
 let words;
 let correct = 0;
 let testStart = false;
 const btn = document.querySelectorAll("button");
 let span;
 const select = document.querySelectorAll("select");
+const format = document.getElementById("format");
 
 function elementString() {
   let textString = words.text.split("");
@@ -58,18 +59,30 @@ document.getElementById("difficulty").addEventListener("change", getDifficulty);
 
 let timePassed = 0;
 
+function getWpm() {
+  setInterval(() => {
+    wpm.innerText = Math.floor((correct / 5) * (60 / timePassed));
+  }, 1000);
+}
+
 let time;
 
-function timeStart() {
+function timeMode() {
+  incrementedTime = 60;
   time = setInterval(() => {
     timePassed++;
     if (timer.innerText === "0") return;
-    duration--;
-    timer.innerText = duration;
+    incrementedTime--;
+    timer.innerText = incrementedTime;
   }, 1000);
+}
 
-  setInterval(() => {
-    wpm.innerText = Math.floor((correct / 5) * (60 / timePassed));
+function passage() {
+  incrementedTime = 0;
+  time = setInterval(() => {
+    incrementedTime++;
+    timePassed++;
+    timer.innerText = incrementedTime;
   }, 1000);
 }
 
@@ -77,7 +90,12 @@ let currentIndex = 0;
 let incorrect = 0;
 
 start.addEventListener("click", () => {
-  timeStart();
+  if (format.value === "60s") {
+    timeMode();
+  } else passage();
+
+  getWpm();
+
   btn.forEach((btn) => {
     btn.disabled = true;
   });
@@ -126,10 +144,10 @@ document.addEventListener("keyup", (e) => {
   if (currentIndex >= span.length - 1) {
     clearInterval(time);
     testStart = false;
+    return;
   }
 
   currentIndex++;
 
-  if (testStart != true) return;
   span[currentIndex].classList.add("current");
 });
