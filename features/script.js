@@ -72,7 +72,7 @@ function timeMode() {
   incrementedTime = 60;
   time = setInterval(() => {
     timePassed++;
-    if (incrementedTime === "0") return;
+    if (incrementedTime === 0) return;
     incrementedTime--;
     seconds = String(incrementedTime).padStart(2, "0");
 

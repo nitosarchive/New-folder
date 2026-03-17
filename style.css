@@ -134,11 +134,12 @@ main {
 }
 
 @keyframes smooth-blink {
-  0% {
-    background: none; /* Fully visible */
+  0%,
+  100% {
+    background: hsl(240, 1%, 59%);
   }
   50% {
-    background: hsl(240, 1%, 59%); /* Fully transparent */
+    background: hsla(240, 1%, 59%, 0.295);
   }
 }
 
