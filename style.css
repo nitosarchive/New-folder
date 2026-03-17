@@ -97,6 +97,9 @@ header span:first-child {
   border-radius: 10px;
 }
 
+#time {
+  color: hsl(49, 85%, 70%);
+}
 main {
   position: relative;
 }
@@ -126,8 +129,17 @@ main {
 }
 
 .current {
-  background: hsl(240, 1%, 59%);
   border-radius: 0.3rem;
+  animation: smooth-blink 2s infinite;
+}
+
+@keyframes smooth-blink {
+  0% {
+    background: none; /* Fully visible */
+  }
+  50% {
+    background: hsl(240, 1%, 59%); /* Fully transparent */
+  }
 }
 
 @media screen and (min-width: 750px) {

@@ -72,7 +72,7 @@ function timeMode() {
   incrementedTime = 60;
   time = setInterval(() => {
     timePassed++;
-    if (timer.innerText === "0") return;
+    if (incrementedTime === "0") return;
     incrementedTime--;
     seconds = String(incrementedTime).padStart(2, "0");
 
@@ -154,17 +154,14 @@ document.addEventListener("keyup", (e) => {
   }
   current.classList.remove("current");
 
-  accuracy.innerText = Math.floor(
-    ((span.length - incorrect) / span.length) * 100,
-  );
+  accuracy.innerText =
+    Math.floor(((span.length - incorrect) / span.length) * 100) + "%";
 
   if (currentIndex >= span.length - 1) {
     clearInterval(time);
     testStart = false;
     return;
   }
-
   currentIndex++;
-
   span[currentIndex].classList.add("current");
 });
