@@ -12,6 +12,7 @@ let span;
 const select = document.querySelectorAll("select");
 const format = document.getElementById("format");
 const restart = document.getElementById("restart");
+const test = document.querySelector(".test");
 
 window.addEventListener("keydown", function (e) {
   if (e.key === " ") {
@@ -81,7 +82,11 @@ function timeMode() {
   incrementedTime = 60;
   time = setInterval(() => {
     timePassed++;
-    if (incrementedTime === 0) return;
+    if (incrementedTime === 0) {
+      test.classList.add("hidden");
+      return;
+    }
+
     incrementedTime--;
     seconds = String(incrementedTime).padStart(2, "0");
 
@@ -162,6 +167,7 @@ document.addEventListener("keyup", (e) => {
   if (currentIndex >= span.length - 1) {
     clearInterval(time);
     testStart = false;
+    test.classList.add("hidden");
     return;
   }
 
@@ -174,7 +180,8 @@ document.addEventListener("keyup", (e) => {
 });
 
 restart.addEventListener("mousedown", (e) => {
-  e.preventDefault;
+  e.preventDefault();
+  test.classList.remove("hidden");
   if (format.value === "60s") {
     incrementedTime = 60;
   } else incrementedTime = 0;

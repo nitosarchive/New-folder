@@ -8,66 +8,68 @@
     <title>Typing Test</title>
   </head>
   <body>
-    <div class="head">
-      <img
-        class="logo"
-        src="./typing-speed-test-main/assets/images/logo-small.svg"
-        alt=""
-      />
-
-      <div>
+    <div class="test">
+      <div class="head">
         <img
-          src="./typing-speed-test-main/assets/images/icon-personal-best.svg"
+          class="logo"
+          src="./typing-speed-test-main/assets/images/logo-small.svg"
           alt=""
         />
-        <span>Best:</span>
-        <span>92 WPM</span>
+
+        <div>
+          <img
+            src="./typing-speed-test-main/assets/images/icon-personal-best.svg"
+            alt=""
+          />
+          <span>Best:</span>
+          <span>92 WPM</span>
+        </div>
       </div>
+
+      <div class="stats-container">
+        <div class="wpm-wrapper">
+          <span>WPM:</span>
+          <span id="wpm">0</span>
+        </div>
+        <div class="gap"></div>
+        <div class="accuracy-wrapper">
+          <span>Accuracy:</span>
+
+          <span id="accuracy">100%</span>
+        </div>
+        <div class="gap"></div>
+        <div class="time-wrapper">
+          <span>Time:</span>
+          <span id="time">0:00</span>
+        </div>
+      </div>
+      <div class="option-container">
+        <select title="difficulty" id="difficulty">
+          <button>
+            <selectedcontent></selectedcontent>
+          </button>
+          <option value="easy"><span></span>Easy</option>
+          <option value="medium"><span></span>Medium</option>
+          <option value="hard"><span></span>Hard</option>
+        </select>
+
+        <select title="format" id="format">
+          <button>
+            <selectedcontent></selectedcontent>
+          </button>
+          <option value="60s"><span></span>Timed(60)</option>
+          <option value="passage"><span></span>Passage</option>
+        </select>
+      </div>
+      <main>
+        <div class="overlay">
+          <button id="start">start typing test</button>
+          <span>Or click the text and start typing</span>
+        </div>
+
+        <div id="text" class="not-started"></div>
+      </main>
     </div>
-
-    <div class="stats-container">
-      <div class="wpm-wrapper">
-        <span>WPM:</span>
-        <span id="wpm">0</span>
-      </div>
-      <div class="gap"></div>
-      <div class="accuracy-wrapper">
-        <span>Accuracy:</span>
-
-        <span id="accuracy">100%</span>
-      </div>
-      <div class="gap"></div>
-      <div class="time-wrapper">
-        <span>Time:</span>
-        <span id="time">0:00</span>
-      </div>
-    </div>
-    <div class="option-container">
-      <select title="difficulty" id="difficulty">
-        <button>
-          <selectedcontent></selectedcontent>
-        </button>
-        <option value="easy"><span></span>Easy</option>
-        <option value="medium"><span></span>Medium</option>
-        <option value="hard"><span></span>Hard</option>
-      </select>
-
-      <select title="format" id="format">
-        <button>
-          <selectedcontent></selectedcontent>
-        </button>
-        <option value="60s"><span></span>Timed(60)</option>
-        <option value="passage"><span></span>Passage</option>
-      </select>
-    </div>
-    <main>
-      <div class="overlay">
-        <button id="start">start typing test</button>
-        <span>Or click the text and start typing</span>
-      </div>
-
-      <div id="text" class="not-started"></div>
-    </main>
 
     <footer>
       <button id="restart" class="hidden">
@@ -78,5 +80,7 @@
         />
       </button>
     </footer>
+
+    <div class="hidden"></div>
   </body>
 </html>
