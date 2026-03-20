@@ -164,7 +164,12 @@ document.addEventListener("keyup", (e) => {
     testStart = false;
     return;
   }
+
   currentIndex++;
+  current.scrollIntoView({
+    block: "center",
+    behavior: "smooth",
+  });
   span[currentIndex].classList.add("current");
 });
 
