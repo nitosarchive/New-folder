@@ -13,6 +13,14 @@ const select = document.querySelectorAll("select");
 const format = document.getElementById("format");
 const restart = document.getElementById("restart");
 
+window.addEventListener("keydown", function (e) {
+  if (e.key === " ") {
+    if (e.target === document.body) {
+      e.preventDefault();
+    }
+  }
+});
+
 function elementString() {
   let textString = words.text.split("");
 
