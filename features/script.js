@@ -77,7 +77,7 @@ function timeMode() {
     incrementedTime--;
     seconds = String(incrementedTime).padStart(2, "0");
 
-    timer.innerText = `00:00:${seconds}`;
+    timer.innerText = `0:${seconds}`;
   }, 1000);
 }
 
@@ -88,19 +88,15 @@ function passage() {
     timePassed++;
     let minutes = Math.floor(incrementedTime / 60);
 
-    let hour = Math.floor(incrementedTime / 3600);
-
     let second = incrementedTime % 60;
 
     let minute = minutes % 60;
 
     second = String(second).padStart(2, "0");
 
-    minute = String(minute).padStart(2, "0");
+    minute = String(minute).padStart(1, "0");
 
-    hour = String(hour).padStart(2, "0");
-
-    timer.innerText = `${hour}:${minute}:${second}`;
+    timer.innerText = `${minute}:${second}`;
   }, 1000);
 }
 
@@ -164,7 +160,8 @@ document.addEventListener("keyup", (e) => {
   span[currentIndex].classList.add("current");
 });
 
-restart.addEventListener("click", () => {
+restart.addEventListener("mousedown", (e) => {
+  e.preventDefault;
   if (format.value === "60s") {
     incrementedTime = 60;
   } else incrementedTime = 0;

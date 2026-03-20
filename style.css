@@ -34,32 +34,74 @@
 }
 
 body {
-  background: rgb(20, 20, 20);
+  background: hsl(0, 0%, 7%);
   display: flex;
   align-items: center;
   flex-direction: column;
   font-family: "Sora";
+  padding: 1em;
 }
 
-header {
+.head {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-block-end: 0.5em;
 }
 
-header div {
+.head div {
   display: flex;
   align-items: center;
   gap: 0.2em;
 }
 
-header span:first-child {
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-inline: 1em;
+  font-size: 1.2rem;
+}
+
+.stats-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
+}
+
+.stats-container div span:first-child {
+  color: hsl(240, 3%, 46%);
+  font-weight: 400;
+}
+
+#accuracy {
+  color: hsl(354, 63%, 57%);
+}
+
+.gap {
+  height: auto;
+  width: 1px;
+  background: hsl(240, 3%, 46%);
+}
+
+.head span:first-child {
   color: hsl(0, 0%, 15%);
 }
-.select {
+
+.option-container {
   display: flex;
 }
 
+select {
+  background: none;
+}
+option::before {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: white;
+}
 .option-container option {
   background: none;
   border: 1px solid white;
@@ -126,6 +168,7 @@ main {
 }
 .incorrect {
   color: hsl(354, 63%, 57%);
+  text-decoration: underline;
 }
 
 .current {
@@ -143,10 +186,6 @@ main {
   }
 }
 
-select {
-  background: black;
-}
-
 button {
   background: hsl(0, 0%, 15%);
   font: inherit;
@@ -156,6 +195,27 @@ button {
 
 .hidden {
   display: none;
+}
+
+footer {
+  margin-block-start: 1em;
+  #restart {
+    border-radius: 0.4em;
+    padding-inline: 1em;
+    padding-block: 0.8em;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    gap: 0.7em;
+    align-items: center;
+  }
+}
+
+main {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  margin-block-start: 1em;
+  padding-block: 1em;
 }
 
 @media screen and (min-width: 750px) {

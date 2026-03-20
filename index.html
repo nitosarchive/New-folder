@@ -8,8 +8,12 @@
     <title>Typing Test</title>
   </head>
   <body>
-    <header>
-      <img src="./typing-speed-test-main/assets/images/logo-small.svg" alt="" />
+    <div class="head">
+      <img
+        class="logo"
+        src="./typing-speed-test-main/assets/images/logo-small.svg"
+        alt=""
+      />
 
       <div>
         <img
@@ -19,14 +23,26 @@
         <span>Best:</span>
         <span>92 WPM</span>
       </div>
-    </header>
-    <nav>
-      <div class="container-1">
-        <span id="accuracy">100%</span>
-        <span id="wpm">0</span>
-        <span id="time">00:00:00</span>
-      </div>
+    </div>
 
+    <div class="stats-container">
+      <div class="wpm-wrapper">
+        <span>WPM:</span>
+        <span id="wpm">0</span>
+      </div>
+      <div class="gap"></div>
+      <div class="accuracy-wrapper">
+        <span>Accuracy:</span>
+
+        <span id="accuracy">100%</span>
+      </div>
+      <div class="gap"></div>
+      <div class="time-wrapper">
+        <span>Time:</span>
+        <span id="time">0:00</span>
+      </div>
+    </div>
+    <div class="option-container">
       <select title="difficulty" id="difficulty">
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
@@ -34,10 +50,10 @@
       </select>
 
       <select title="format" id="format">
-        <option value="60s">60s</option>
+        <option value="60s">Timed(60s)</option>
         <option value="passage">Passage</option>
       </select>
-    </nav>
+    </div>
     <main>
       <div class="overlay">
         <button id="start">start typing test</button>
@@ -45,7 +61,9 @@
       </div>
 
       <div id="text" class="not-started"></div>
+    </main>
 
+    <footer>
       <button id="restart" class="hidden">
         Restart Test
         <img
@@ -53,6 +71,6 @@
           alt=""
         />
       </button>
-    </main>
+    </footer>
   </body>
 </html>
