@@ -219,7 +219,6 @@ main {
   display: flex;
 
   width: 90%;
-
   white-space: pre-wrap;
   flex-wrap: wrap;
 }
@@ -233,10 +232,10 @@ main {
   color: hsl(240, 3%, 46%);
 }
 
-.correct {
+#text span.correct {
   color: hsl(140, 63%, 57%);
 }
-.incorrect {
+#text span.incorrect {
   color: hsl(354, 63%, 57%);
   text-decoration: underline;
 }

@@ -187,14 +187,21 @@ document.addEventListener("keyup", (e) => {
 
 restart.addEventListener("mousedown", (e) => {
   e.preventDefault();
+
   test.classList.remove("hidden");
   if (format.value === "60s") {
     {
       clearInterval(time);
       incrementedTime = 60;
       timeMode();
+      timer.innerText = "0:60";
     }
-  } else incrementedTime = 0;
+  } else {
+    clearInterval(time);
+    passage();
+    incrementedTime = 0;
+    timer.innerText = "0:00";
+  }
 
   incorrect = 0;
   correct = 0;
