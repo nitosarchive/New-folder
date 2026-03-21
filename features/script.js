@@ -74,12 +74,6 @@ document.getElementById("difficulty").addEventListener("change", getDifficulty);
 
 let timePassed = 0;
 
-function getWpm() {
-  setInterval(() => {
-    wpm.innerText = Math.floor((correct / 5) * (60 / timePassed));
-  }, 1000);
-}
-
 let time;
 let seconds;
 
@@ -123,16 +117,22 @@ function passage() {
   }, 1000);
 }
 
+function getWpm() {
+  setInterval(() => {
+    if (timePassed === 0) return;
+    wpm.innerText = Math.floor((correct / 5) * (60 / timePassed));
+  }, 1000);
+}
+
 let currentIndex = 0;
 let incorrect = 0;
 
 function takeTest() {
   restart.classList.remove("hidden");
+  getWpm();
   if (format.value === "60s") {
     timeMode();
   } else passage();
-
-  getWpm();
 
   select.forEach((select) => {
     select.disabled = true;
@@ -230,6 +230,7 @@ restart.addEventListener("mousedown", (e) => {
   correct = 0;
 
   accuracy.innerText = "100%";
+  wpm.innerText = 0;
 
   currentIndex = 0;
 
