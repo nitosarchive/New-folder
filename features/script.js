@@ -18,6 +18,9 @@ const wpmResult = document.querySelector("#wpm-result");
 const correctResult = document.getElementById("correct");
 const incorrectResult = document.getElementById("incorrect");
 const accuracyResult = document.getElementById("accuracy-result");
+let best = 0;
+const base = document.querySelector(".base");
+const bestScore = document.getElementById("best-score");
 
 window.addEventListener("keydown", function (e) {
   if (e.key === " ") {
@@ -182,18 +185,25 @@ document.addEventListener("keyup", (e) => {
 
   if (currentIndex >= span.length - 1) {
     testStart = false;
+    result.classList.remove("hidden");
     test.classList.add("hidden");
     saveWpm = Math.floor((correct / 5) * (60 / timePassed));
     saveAccuracy =
       Math.floor(((span.length - incorrect) / span.length) * 100) + "%";
     wpmResult.innerText = saveWpm;
-    result.classList.remove("hidden");
     correctResult.innerText = correct;
-    document.querySelector(".base-img").classList.add("active");
     incorrectResult.innerText = incorrect;
-
     accuracyResult.innerText = saveAccuracy;
-    Math.floor(((span.length - incorrect) / span.length) * 100) + "%";
+    restart.style.background = "white";
+    restart.style.color = "hsl(0, 0%, 7%)";
+
+    if (best === 0) {
+      best = saveWpm;
+      base.classList.remove("hidden");
+      document.querySelector(".base-img").classList.add("active");
+      bestScore.innerText = best;
+    }
+
     return;
   }
 
@@ -243,4 +253,5 @@ restart.addEventListener("mousedown", (e) => {
   });
 
   span[currentIndex].classList.add("current");
+  base.classList.add("hidden");
 });
